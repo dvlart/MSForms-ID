@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Forms Office Question ID Appender Pro
 // @author       Sebastian Cwynar (dvlart)
-// @version      0.9
+// @version      0.9.1
 // @description  Appends question IDs to question text in forms.office.com with format options, inline copy buttons, and custom format generation. Features draggable and minimizable modal.
 // @match        https://forms.office.com/*
 // @grant        none
