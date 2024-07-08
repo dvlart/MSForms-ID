@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Forms Office Question ID Appender Pro
 // @author       Sebastian Cwynar (dvlart)
-// @version      0.9.2
+// @version      0.9.3
 // @description  Appends question IDs to question text in forms.office.com with format options, inline copy buttons, and custom format generation. Features draggable and minimizable modal.
 // @match        https://forms.office.com/*
 // @downloadURL    https://github.com/dvlart/MSForms-ID/raw/main/Forms%20Office%20Question%20ID%20Appender%20Pro-0.9.user.js
@@ -55,6 +55,15 @@
             border: none;
             color: white;
             font-size: 18px;
+            cursor: pointer;
+        `,
+        createListButton: `
+            margin-top: 15px;
+            padding: 5px 10px;
+            background-color: #00a86b;
+            color: white;
+            border: none;
+            border-radius: 4px;
             cursor: pointer;
         `,
         minimizeButton: `
@@ -174,6 +183,7 @@
                 <label for="addCopyButton">Add copy button next to IDs</label>
             </div>
             <button id="applyButton" style="${styles.applyButton}">Apply</button>
+            <button id="createListButton" style="${styles.createListButton}">Create as list</button>
             <button id="discardButton" style="${styles.discardButton}">Close</button>
         `;
     }
@@ -246,8 +256,37 @@
         modal.querySelector('.minimize-button').addEventListener('click', () => {
             minimizeModal(modal);
         });
+
+        document.getElementById('createListButton').addEventListener('click', createQuestionList);
     }
 
+    function createQuestionList() {
+        const questions = document.querySelectorAll('div[data-automation-id="questionContent"]');
+        let listContent = "Title,GeneratedID\n";
+
+        questions.forEach(question => {
+            const questionIdElement = question.querySelector('div[id*="QuestionId_"]');
+            const questionText = question.querySelector('span[class="text-format-content "]');
+            
+            if (questionIdElement && questionText) {
+                const questionId = questionIdElement.getAttribute("id").split("_")[1];
+                const title = questionText.textContent.replace(/,/g, ''); // Remove commas to avoid CSV issues
+                const formattedId = formatId(questionId, document.querySelector('input[name="format"]:checked').value,
+                                             document.getElementById('customFormatInput').value,
+                                             document.getElementById('includeAt').checked,
+                                             document.getElementById('includeBraces').checked);
+                listContent += `${title},${formattedId}\n`;
+            }
+        });
+
+        const blob = new Blob([listContent], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'question_list.csv');
+        link.click();
+    }
+    
     function minimizeModal(modal) {
         document.body.removeChild(modal);
         const minimized = document.createElement('div');
