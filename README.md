@@ -12,6 +12,7 @@ Forms Office Question ID Appender Pro is a user script that enhances the functio
 - Inline copy buttons for quick ID copying
 - Draggable and minimizable options modal
 - Easy-to-use interface integrated into the Forms Office UI
+- Generate a list of questions with their IDs, with option to save as CSV
 
 ## Installation
 
@@ -45,6 +46,11 @@ Forms Office Question ID Appender Pro is a user script that enhances the functio
 
 7. You can minimize the options modal by clicking the "_" button, or close it using the "×" button or "Close" button.
 
+8. To generate a list of questions with their IDs:
+   - Click the "Create as list" button in the modal
+   - A new window will open with a list of all questions and their generated IDs
+   - You can copy this list or save it as a CSV file for further use
+
 ## Contributing
 
 If you'd like to contribute to this project, please feel free to submit pull requests or open issues on the [GitHub repository](https://github.com/dvlart/MSForms-ID).
@@ -59,7 +65,7 @@ Sebastian Cwynar (dvlart)
 
 ## Version
 
-0.9.2
+0.9.3
 
 ## Feedback and Support
 
