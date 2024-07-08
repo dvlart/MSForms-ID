@@ -4,6 +4,8 @@
 // @version      0.9.1
 // @description  Appends question IDs to question text in forms.office.com with format options, inline copy buttons, and custom format generation. Features draggable and minimizable modal.
 // @match        https://forms.office.com/*
+// @downloadURL    https://github.com/dvlart/MSForms-ID/raw/main/Forms%20Office%20Question%20ID%20Appender%20Pro-0.9.user.js
+// @updateURL    https://github.com/dvlart/MSForms-ID/raw/main/Forms%20Office%20Question%20ID%20Appender%20Pro-0.9.user.js
 // @grant        none
 // ==/UserScript==
 
