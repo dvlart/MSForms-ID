@@ -4,7 +4,6 @@
 // @version      0.9
 // @description  Appends question IDs to question text in forms.office.com with format options, inline copy buttons, and custom format generation. Features draggable and minimizable modal.
 // @match        https://forms.office.com/*
-// @icon         https://cdn.forms.office.net/forms/images/favicon.ico
 // @grant        none
 // ==/UserScript==
 
